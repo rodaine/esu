@@ -1,0 +1,18 @@
+sudo: required
+
+language: go
+go:
+  - 1.5
+  - tip
+
+services:
+  - docker
+
+install:
+  - script/install
+before_script:
+  - script/test-es up
+script:
+  - script/test
+after_script:
+  - script/test-es down
