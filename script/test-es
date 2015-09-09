@@ -5,7 +5,7 @@ set -e
 ES="es"
 
 if test "$1" = "up"; then
-  docker run --name $ES -d -p 9200:9200 -p 9300:9300 elasticsearch:2
+  docker run --name $ES -d -p 9200:9200 -p 9300:9300 elasticsearch:2 --network.host _non_loopback_
 else
   docker stop $ES
   docker rm $ES
