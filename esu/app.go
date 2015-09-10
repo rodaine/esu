@@ -23,11 +23,13 @@ func InitApp() *cli.App {
 	app.Usage = "Elasticsearch Utility: A tool for configuring and managing an Elasticsearch cluster"
 	app.Version = "0.1.0"
 	app.HideHelp = true
+	app.HideVersion = true
 	app.Writer = DefaultOutputWriter
 
 	setupGlobalFlags(app)
 	setupGlobalCommands(app)
 	setupPingCommand(app)
+	setupClusterCommand(app)
 
 	return app
 }
@@ -59,7 +61,7 @@ func setupGlobalCommands(app *cli.App) {
 		{
 			Name:    "help",
 			Aliases: []string{"man"},
-			Usage:   "Prints this help message",
+			Usage:   "prints this help message",
 			Action:  cli.ShowAppHelp,
 		},
 	}

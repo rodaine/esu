@@ -39,6 +39,28 @@ func connectToES(ctx *cli.Context) (es *elastic.Client) {
 	return
 }
 
+func getStdIn() io.Reader {
+	info, err := os.Stdin.Stat()
+
+	if err != nil {
+		return nil
+	}
+
+	if info.Size() == 0 {
+		return nil
+	}
+
+	return os.Stdin
+}
+
+func getFile(path string) io.Reader {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil
+	}
+	return f
+}
+
 func readJSON(r io.Reader) (out map[string]interface{}, err error) {
 	d := json.NewDecoder(r)
 	err = d.Decode(&out)
@@ -46,7 +68,7 @@ func readJSON(r io.Reader) (out map[string]interface{}, err error) {
 }
 
 func exitWithError(err error) {
-	txt := color.New(color.FgRed).SprintfFunc()("ERROR: %v", err)
+	txt := color.New(color.FgRed).SprintfFunc()("\nERROR: %v", err)
 	fmt.Fprintln(DefaultErrorWriter, txt)
 	os.Exit(1)
 }

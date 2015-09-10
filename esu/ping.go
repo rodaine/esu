@@ -10,7 +10,7 @@ func setupPingCommand(app *cli.App) {
 	app.Commands = append(app.Commands, cli.Command{
 		Name:    "ping",
 		Aliases: []string{"p"},
-		Usage:   "Ping the cluster to see if it's available",
+		Usage:   "ping the cluster to see if it's available",
 		Action:  ping,
 	},
 	)
