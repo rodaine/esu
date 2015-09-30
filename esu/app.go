@@ -30,6 +30,7 @@ func InitApp() *cli.App {
 	setupGlobalCommands(app)
 	setupPingCommand(app)
 	setupClusterCommand(app)
+	setupIndicesCommand(app)
 
 	return app
 }

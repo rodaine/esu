@@ -2,6 +2,7 @@ package esu
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/url"
@@ -71,4 +72,9 @@ func exitWithError(err error) {
 	txt := color.New(color.FgRed).SprintfFunc()("\nERROR: %v", err)
 	fmt.Fprintln(DefaultErrorWriter, txt)
 	os.Exit(1)
+}
+
+func exitWithHelp(ctx *cli.Context) {
+	cli.ShowSubcommandHelp(ctx)
+	exitWithError(errors.New("Invalid usage. Please see above"))
 }

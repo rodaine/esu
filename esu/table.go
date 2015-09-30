@@ -2,7 +2,6 @@ package esu
 
 import (
 	"fmt"
-	"regexp"
 	"strings"
 
 	"github.com/codegangsta/cli"
@@ -13,8 +12,6 @@ var (
 	DefaultFirstColumnColor = color.New(color.FgYellow)
 	DefaultHeaderColor      = color.New(color.FgGreen, color.Underline)
 	DefaultPadding          = 2
-
-	ansi = regexp.MustCompile("[\u001b\u009b][[()#;?]*(?:[0-9]{1,4}(?:;[0-9]{0,4})*)?[0-9A-ORZcf-nqry=><]")
 )
 
 type Table struct {
