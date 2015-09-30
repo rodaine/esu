@@ -5,7 +5,7 @@ set -e
 ES="es"
 
 if test "$1" = "up"; then
-  docker run --name $ES -d -v elasticsearch:2 -Des.network.bind_host=0.0.0.0
+  docker run --name $ES -d elasticsearch:2 -Des.network.bind_host=0.0.0.0
 else
   docker stop $ES
   docker rm $ES
