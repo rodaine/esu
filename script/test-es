@@ -5,6 +5,7 @@ set -e
 ES="es"
 HOST=""
 if test "Darwin" == "$(uname)"
+then
   HOST="--network.host _non_loopback_"
 fi
 
