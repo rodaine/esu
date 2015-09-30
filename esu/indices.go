@@ -37,11 +37,11 @@ func setupIndicesCommand(app *cli.App) {
 					Action:  getIndexStats,
 				},
 				{
-					Name: "delete",
+					Name:    "delete",
 					Aliases: []string{"d"},
-					Usage: "delete index(es) permanently",
-					Action: deleteIndex,
-				}
+					Usage:   "delete index(es) permanently",
+					Action:  deleteIndex,
+				},
 			},
 		},
 	)
@@ -155,6 +155,4 @@ func deleteIndex(ctx *cli.Context) {
 	if len(args) == 0 {
 		exitWithHelp(ctx)
 	}
-
-	es := connectToES(ctx).DeleteIndex(...)
 }
