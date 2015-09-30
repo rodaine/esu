@@ -3,9 +3,13 @@
 set -e
 
 ES="es"
+HOST=""
+if test "Darwin" == "$(uname)"
+  HOST="--network.host _non_loopback_"
+fi
 
 if test "$1" = "up"; then
-  docker run --name $ES -d -p 9200:9200 -p 9300:9300 elasticsearch:2 --network.host _non_loopback_
+  docker run --name $ES -d -p 9200:9200 -p 9300:9300 elasticsearch:2 $HOST
 else
   docker stop $ES
   docker rm $ES
